@@ -15,7 +15,6 @@ export default function ProgressRecordList() {
 
             const activeRecords = result.data.filter(record => record.active === true);
 
-            // Sort records based on the recordDate in descending order
             const sortedRecords = activeRecords.sort((b, a) => new Date(b.recordDate) - new Date(a.recordDate));
 
             setRecords(sortedRecords);

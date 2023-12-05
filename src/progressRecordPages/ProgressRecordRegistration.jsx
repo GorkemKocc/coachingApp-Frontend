@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, Table, Input, Grid, Container } from 'semantic-ui-react';
-import CoachService from '../services/coachService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { useParams } from 'react-router-dom';

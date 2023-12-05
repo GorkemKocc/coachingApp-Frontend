@@ -68,7 +68,7 @@ export default function NutritionRegistration() {
                 try {
                     nutrition.userId = clientId;
                     console.log(nutrition);
-                    // Assuming you need to pass nutrition data to the addNutrition function
+
                     const response = await coachService.addNutritionPlan(nutrition);
 
                     console.log('Nutrition added:', response.data);

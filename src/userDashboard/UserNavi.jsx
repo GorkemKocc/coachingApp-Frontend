@@ -25,4 +25,3 @@ export default function Navi({ onItemClick, selectedNaviItem }) {
         </div>
     );
 }
-// <Menu.Item name='Progress Record' active={selectedNaviItem === 'Record'} onClick={onItemClick} />

@@ -12,7 +12,7 @@ export default function CoachUpdate() {
   let { id } = useParams()
 
   const [, setCoach] = useState({})
-console.log("geldi")
+
   useEffect(() => {
     let adminService = new AdminServis()
     adminService.getByCoachId(id).then(result => {
@@ -20,7 +20,6 @@ console.log("geldi")
 
       const formattedBirthDate = new Date(result.data.birthDate).toISOString().split('T')[0];
 
-      // Update the formData state with the fetched data
       setFormData({
         coachId: result.data.coachId,
         firstName: result.data.firstName,
@@ -34,8 +33,7 @@ console.log("geldi")
         experience: result.data.experience,
         active: result.data.active
       });
-      result.data.active ? setActiveButton("Active"):setActiveButton("Passive");
-      // Set the profile picture preview if available
+      result.data.active ? setActiveButton("Active") : setActiveButton("Passive");
       if (result.data.profilePicture) {
         setProfilePicturePreview(result.data.profilePicture);
       }
@@ -59,7 +57,7 @@ console.log("geldi")
   });
 
   const [formData, setFormData] = useState({
-    coachId : parseInt(id,10),
+    coachId: parseInt(id, 10),
     firstName: '',
     lastName: '',
     birthDate: '',
@@ -114,7 +112,6 @@ console.log("geldi")
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    // Hata kontrolünü burada yapın ve hatayı formErrors'e ekleyin
     try {
       schema.validateSyncAt(name, { [name]: value });
       setFormErrors({ ...formErrors, [name]: undefined });
@@ -132,7 +129,6 @@ console.log("geldi")
     const file = e.target.files[0];
     setFormData({ ...formData, profilePicture: file });
 
-    // Read and preview the image
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -152,7 +148,7 @@ console.log("geldi")
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData.id); 
+    console.log(formData.id);
 
     try {
       await schema.validate(formData, { abortEarly: false });
@@ -163,10 +159,8 @@ console.log("geldi")
         console.log('Coach Updated:', response.data);
         toast.success('Coach Updated')
         window.location.reload()
-        // Başarılı ekleme durumunda istediğiniz işlemleri gerçekleştirin.
       } catch (error) {
         console.error('Error updating coach:', error);
-        // Hata durumunda istediğiniz işlemleri gerçekleştirin.
       }
     } catch (validationError) {
       const errors = {};
@@ -175,7 +169,6 @@ console.log("geldi")
       });
       setFormErrors(errors);
       console.error('Validation error:', validationError.errors);
-      // Handle validation errors here
     }
   };
 

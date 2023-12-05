@@ -7,15 +7,12 @@ import { useParams } from 'react-router-dom';
 import UserServis from '../services/userService';
 
 export default function ProgressRecordUpdate() {
-    // Get id from the URL params
     let { id } = useParams();
 
-    // Initialize state for progress records
     const [progressRecords, setProgressRecords] = useState([
         { recordId: 1, userId: id, bodyFatPercentage: 10.2, bodyMassIndex: 10.2, height: 180.1, weight: 80.5, muscleMass: 10.2, recordDate: null, isActive: true },
     ]);
 
-    // Fetch active progress records for the given id
     useEffect(() => {
         let userService = new UserServis();
         userService.getProgressRecords(id).then(result => {
@@ -25,7 +22,6 @@ export default function ProgressRecordUpdate() {
         });
     }, [id]);
     console.log(progressRecords)
-    // Handler functions for updating progress record fields
     const handleBodyFatChange = (e, { value }, index) => {
         const updatedRecords = [...progressRecords];
         updatedRecords[index].bodyFatPercentage = value;
@@ -62,14 +58,12 @@ export default function ProgressRecordUpdate() {
         setProgressRecords(updatedRecords);
     };
 
-    // Deactivate a progress record
     const deactivateRecord = (index) => {
         const updatedRecords = [...progressRecords];
         updatedRecords[index].active = false;
         setProgressRecords(updatedRecords);
     };
 
-    // Handle the update of progress records
     const handleUpdate = async (e) => {
         e.preventDefault();
 
@@ -90,7 +84,6 @@ export default function ProgressRecordUpdate() {
                 }
             }
         } catch (validationError) {
-            // Handle validation error
         }
     };
 

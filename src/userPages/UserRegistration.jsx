@@ -5,7 +5,6 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.min.css";
 import AdminServis from '../services/adminService';
-import CoachServis from '../services/coachService';
 
 export default function UserRegistration() {
 
@@ -129,7 +128,6 @@ export default function UserRegistration() {
   const setCoach = () => {
     const matchingCoaches = coaches.filter(coach => coach.specialization === formData.goal);
     if (matchingCoaches.length > 0) {
-      // Select a random coach from the matching coaches
       const randomIndex = Math.floor(Math.random() * matchingCoaches.length);
       const randomCoach = matchingCoaches[randomIndex];
       setFormData({ ...formData, coachId: randomCoach.coachId });
@@ -143,7 +141,6 @@ export default function UserRegistration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if formData.coachId is null
     if (formData.coachId !== null) {
       console.log(formData);
       try {
@@ -168,9 +165,7 @@ export default function UserRegistration() {
         console.error('Validation error:', validationError.errors);
       }
     } else {
-      // Handle the case where formData.coachId is null
       toast.error('No eligible coach found for the goal');
-      // You may set a specific error state or show an error message to the user.
     }
   };
 

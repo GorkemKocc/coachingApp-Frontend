@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Icon, Menu, Table } from 'semantic-ui-react';
 import CoachServis from '../services/coachService';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function ClientList() {
 
+    let {id } =useParams()
     const [clients, setClients] = useState([])
 
     /*useEffect(() => {
@@ -13,7 +14,7 @@ export default function ClientList() {
     })*/
     useEffect(() => {
         let coachService = new CoachServis();
-        coachService.getAllClients(1).then(result => {
+        coachService.getAllClients(id).then(result => {
             // Filter clients based on the 'active' property
             const activeClients = result.data.filter(client => client.active === true);
 

@@ -114,8 +114,7 @@ export default function ProgramUpdate() {
         }
     };
     const formatDate = (date) => {
-        // Assuming 'date' is a string in ISO format (e.g., "2021-12-20T00:00:00.000+00:00")
-        const formattedDate = date ? new Date(date).toISOString().split('T')[0] : ''; // Format to "yyyy-MM-dd"
+        const formattedDate = date ? new Date(date).toISOString().split('T')[0] : ''; 
         return formattedDate;
     };
 

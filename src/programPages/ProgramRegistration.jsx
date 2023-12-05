@@ -83,7 +83,6 @@ export default function ProgramRegistration() {
                 try {
                     exercise.userId = clientId;
                     console.log(exercise)
-                    // Assuming you need to pass exercise data to the addProgram function
                     const response = await coachService.addProgram(exercise);
 
                     console.log('Program added:', response.data);

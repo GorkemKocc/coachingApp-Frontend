@@ -74,7 +74,6 @@ export default function CoachRegistration() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    // Hata kontrolünü burada yapın ve hatayı formErrors'e ekleyin
     try {
       schema.validateSyncAt(name, { [name]: value });
       setFormErrors({ ...formErrors, [name]: undefined });
@@ -95,7 +94,6 @@ export default function CoachRegistration() {
     const profile = file.getBytes();
     setFormData({ ...formData, profile_picture: profile });
 
-    // Read and preview the image
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -132,7 +130,6 @@ export default function CoachRegistration() {
       });
       setFormErrors(errors);
       console.error('Validation error:', validationError.errors);
-      // Handle validation errors here
     }
   };
 

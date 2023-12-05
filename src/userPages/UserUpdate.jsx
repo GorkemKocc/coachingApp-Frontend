@@ -21,7 +21,6 @@ export default function UserUpdate() {
 
             const formattedBirthDate = new Date(result.data.birthDate).toISOString().split('T')[0];
             console.log(result.data)
-            // Update the formData state with the fetched data
             setFormData({
                 userId: result.data.userId,
                 firstName: result.data.firstName,
@@ -37,7 +36,6 @@ export default function UserUpdate() {
 
 
             result.data.active ? setActiveButton("Active") : setActiveButton("Passive");
-            // Set the profile picture preview if available
             if (result.data.profilePicture) {
                 setProfilePicturePreview(result.data.profilePicture);
             }
@@ -115,7 +113,6 @@ export default function UserUpdate() {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
 
-        // Hata kontrolünü burada yapın ve hatayı formErrors'e ekleyin
         try {
             schema.validateSyncAt(name, { [name]: value });
             setFormErrors({ ...formErrors, [name]: undefined });
@@ -134,7 +131,6 @@ export default function UserUpdate() {
         const file = e.target.files[0];
         setFormData({ ...formData, profilePicture: file });
 
-        // Read and preview the image
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -166,10 +162,8 @@ export default function UserUpdate() {
                 console.log('User Updated:', response.data);
                 toast.success('User Updated Successful')
                 window.location.reload()
-                // Başarılı ekleme durumunda istediğiniz işlemleri gerçekleştirin.
             } catch (error) {
                 console.error('Error updating user:', error);
-                // Hata durumunda istediğiniz işlemleri gerçekleştirin.
             }
         } catch (validationError) {
             const errors = {};
@@ -178,7 +172,6 @@ export default function UserUpdate() {
             });
             setFormErrors(errors);
             console.error('Validation error:', validationError.errors);
-            // Handle validation errors here
         }
     };
 

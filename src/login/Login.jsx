@@ -25,7 +25,6 @@ export default function Login() {
   useEffect(() => {
     let adminService = new AdminServis();
     adminService.getUsers().then(result => {
-      // Filter users based on the 'active' property
       const activeUsers = result.data.filter(user => user.active === true);
       setUsers(activeUsers);
     });
@@ -83,16 +82,13 @@ export default function Login() {
       navigate(`/client/${loggedInClient.userId}`)
 
     } else {
-    //  toast.error('Invalid login credentials')
       console.log('Invalid login credentials');
     }
   };
 
   const handleChangePassword = (e) => {
     e.preventDefault();
-    // Şifre değiştirme işlemini gerçekleştirin.
     console.log('New Password:', newPassword);
-    // Örneğin, bir API'ye post isteği göndermek gibi.
   };
 
   const handleTabChange = (tab) => {
