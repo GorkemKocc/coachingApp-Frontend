@@ -8,17 +8,13 @@ export default function ClientList() {
     let {id } =useParams()
     const [clients, setClients] = useState([])
 
-    /*useEffect(() => {
-        let coachService = new CoachServis()
-        coachService.getAllClients(1).then(result => setClients(result.data))
-    })*/
+
     useEffect(() => {
         let coachService = new CoachServis();
         coachService.getAllClients(id).then(result => {
-            // Filter clients based on the 'active' property
+
             const activeClients = result.data.filter(client => client.active === true);
 
-            // Set the filtered clients to the state
             setClients(activeClients);
         });
     }, []);

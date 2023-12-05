@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.min.css";
 import AdminServis from '../services/adminService';
+import CoachService from '../services/coachService';
 
 export default function UserRegistration() {
 
@@ -68,7 +69,7 @@ export default function UserRegistration() {
     adminService.getCoaches().then(result => setCoachMails(result.data));
   }, []);
 
-  
+
   const emailCheck = () => {
     const emailExists = coachMails.some(coach => coach.email === formData.email) || users.some(user => user.email === formData.email);
     if (emailExists) {
@@ -125,19 +126,38 @@ export default function UserRegistration() {
     setShowPassword(!showPassword);
   };
 
-  const setCoach = () => {
+  const setCoach = async () => {
+    let coachService = new CoachService();
+
     const matchingCoaches = coaches.filter(coach => coach.specialization === formData.goal);
-    if (matchingCoaches.length > 0) {
-      const randomIndex = Math.floor(Math.random() * matchingCoaches.length);
-      const randomCoach = matchingCoaches[randomIndex];
+    let availableCoach = []
+
+
+    await Promise.all(matchingCoaches.map(async coach => {
+      const result = await coachService.getAllClients(coach.coachId);
+      const activeClients = result.data.filter(client => client.active === true);
+  
+      if (activeClients.length < 5) {
+        availableCoach.push(coach);
+        console.log(coach, availableCoach);
+      } else {
+        console.log("byk");
+      }
+    }));
+
+    console.log(availableCoach)
+
+    if (availableCoach.length > 0) {
+      const randomIndex = Math.floor(Math.random() * availableCoach.length);
+      const randomCoach = availableCoach[randomIndex];
       setFormData({ ...formData, coachId: randomCoach.coachId });
-      console.log(formData)
+      console.log(randomCoach);
 
     } else {
       console.error('No matching coach found for the goal:', formData.goal);
+      setFormData({ ...formData, coachId: null });
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -151,7 +171,7 @@ export default function UserRegistration() {
           const response = await adminService.addUser(formData);
           toast.success('User Registration Successful');
           console.log('User added:', response.data);
-          
+
         } catch (error) {
           console.error('Error adding user:', error);
         }
