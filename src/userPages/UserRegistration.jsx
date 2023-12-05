@@ -152,8 +152,9 @@ export default function UserRegistration() {
         let adminService = new AdminServis();
         try {
           const response = await adminService.addUser(formData);
-          console.log('User added:', response.data);
           toast.success('User Registration Successful');
+          console.log('User added:', response.data);
+          
         } catch (error) {
           console.error('Error adding user:', error);
         }

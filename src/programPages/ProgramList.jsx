@@ -40,7 +40,7 @@ export default function ProgramList() {
                             <Table.Cell>{exercise.duration}</Table.Cell>
                             <Table.Cell><Link to={exercise.videoGuideUrl}>{exercise.videoGuideUrl}</Link></Table.Cell>
                             <Table.Cell>{new Date(exercise.startDate).toLocaleDateString()}</Table.Cell>
-                            <Table.Cell>{exercise.goal}</Table.Cell>
+                            <Table.Cell>{exercise.goal || ''}</Table.Cell>
                         </Table.Row>
                     ))}
                 </Table.Body>

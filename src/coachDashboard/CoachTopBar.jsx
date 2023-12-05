@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Button, Container, Dropdown, Menu } from 'semantic-ui-react';
 import AdminServis from '../services/adminService';
 
-export default function TopBar() {
+export default function TopBar({ onItemClick, selectedMenuItem }) {
 
     let { id } = useParams();
 
@@ -36,6 +36,8 @@ export default function TopBar() {
                                 <Dropdown.Item><Button  onClick={logOut}>Sign Out</Button></Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
+                        <Menu.Item as={NavLink} to="messages" name='Messages' active={selectedMenuItem === 'Messages'} onClick={onItemClick}/>
+
                     </Menu.Menu>
                 </Container>
             </Menu>

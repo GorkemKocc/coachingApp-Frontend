@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Checkbox } from 'semantic-ui-react';
+import { Checkbox } from 'semantic-ui-react';
 import './Login.css';
 import AdminServis from '../services/adminService';
-import { Route, Router, useNavigate } from 'react-router-dom';
-import CoachDashboard from '../coachDashboard/CoachDashboard';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.min.css";
 export default function Login() {
 
   const navigate = useNavigate();
@@ -48,8 +49,11 @@ export default function Login() {
   const handlePasswordChange = (e) => {
 
     setNewPassword(e.target.value);
-  
-  
+
+
+  };
+  const register = () => {
+    navigate("/new user")
   };
 
   const handleLogin = (e) => {
@@ -77,8 +81,9 @@ export default function Login() {
       console.log(loggedInClient)
 
       navigate(`/client/${loggedInClient.userId}`)
-      
+
     } else {
+    //  toast.error('Invalid login credentials')
       console.log('Invalid login credentials');
     }
   };
@@ -126,14 +131,15 @@ export default function Login() {
               onChange={() => setShowPassword(!showPassword)}
             />
           </label>
-
-          <button type="submit">Login</button>
-
+          <div className="tab-container">
+            <button type="submit">Login</button>
+            <button type="submit" onClick={register} >Register</button>
+          </div>
         </form>
       ) : (
         <form onSubmit={handleChangePassword}>
 
-           <label>
+          <label>
             Email
             <input
               type="email"

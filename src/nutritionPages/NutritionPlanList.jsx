@@ -38,7 +38,7 @@ export default function NutritionPlanList() {
               <Table.Cell>{nutrition.mealDay}</Table.Cell>
               <Table.Cell>{nutrition.meal}</Table.Cell>
               <Table.Cell>{nutrition.calorie}</Table.Cell>
-              <Table.Cell>{nutrition.goal}</Table.Cell>
+              <Table.Cell>{nutrition.goal || ''}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>

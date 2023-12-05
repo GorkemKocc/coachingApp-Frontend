@@ -11,6 +11,7 @@ import ProgressRecordList from '../progressRecordPages/ProgressRecordList.jsx';
 import ProgramUpdate from '../programPages/ProgramUpdate.jsx';
 import NutritionRegistration from '../nutritionPages/NutritionRegistration.jsx';
 import NutritionUpdate from '../nutritionPages/NutritionUpdate.jsx';
+import Message from '../messagesPages/Message.jsx';
 
 export default function CoachDashboard() {
   let { id } = useParams();
@@ -18,6 +19,12 @@ export default function CoachDashboard() {
   const navigate = useNavigate();
   const location = useLocation();
   const [selectedNaviItem, setSelectedNaviItem] = useState('');
+  const [selectedTopBarItem, setSelectedTopBarItem] = useState('');
+
+  const handleTopBarItemClick = (e, { name }) => {
+    setSelectedTopBarItem(name);
+    console.log(name)
+  };
 
   const handleNaviItemClick = (e, { name }) => {
     console.log(name);
@@ -32,7 +39,7 @@ export default function CoachDashboard() {
 
   return (
     <div>
-      <TopBar />
+      <TopBar onItemClick={handleTopBarItemClick} selectedTopBarItem={selectedTopBarItem} />
       <ToastContainer position="bottom-right" />
       <Container style={{ width: '1500px' }} className="main">
         <Grid>
@@ -50,6 +57,8 @@ export default function CoachDashboard() {
                 <Route path={`/client/:clientId/add nutrition plan`} element={<NutritionRegistration />} />
                 <Route path={`/client/:clientId/update nutrition plan`} element={<NutritionUpdate />} />
                 <Route path={`/client/:clientId/progress record`} element={<ProgressRecordList />} />
+                <Route path={`/messages`} element={<Message />} />
+
               </Routes>
             </Grid.Column>
           </Grid.Row>

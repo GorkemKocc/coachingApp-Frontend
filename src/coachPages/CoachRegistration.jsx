@@ -90,7 +90,10 @@ export default function CoachRegistration() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setFormData({ ...formData, profile_picture: file });
+    
+
+    const profile = file.getBytes();
+    setFormData({ ...formData, profile_picture: profile });
 
     // Read and preview the image
     if (file) {
