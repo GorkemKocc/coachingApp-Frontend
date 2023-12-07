@@ -41,7 +41,7 @@ export default function ClientList() {
 
                             <Table.Row key={client.userId} textAlign='center'>
                                 <Table.Cell>{client.userId}</Table.Cell>
-                                <Table.Cell><Link to={`/trainer/1/client/${client.userId}`}>{client.firstName}</Link></Table.Cell>
+                                <Table.Cell><Link to={`/trainer/${id}/client/${client.userId}`}>{client.firstName}</Link></Table.Cell>
                                 <Table.Cell>{client.lastName}</Table.Cell>
                                 <Table.Cell>{new Date(client.birthDate).toLocaleDateString()}</Table.Cell>
                                 <Table.Cell>{client.gender}</Table.Cell>
