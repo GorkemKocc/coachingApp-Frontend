@@ -4,16 +4,16 @@ I used Aws PostgreSql Database in this project
 ### Database Diagram
 ![DatabaseDiagram](https://github.com/GorkemKocc/coachingApp-Frontend/assets/118227992/8d707f6e-bdc2-42ef-bf1c-6c4b5128b4a2)
 
-##Login Screen
+## Login Screen
 ![LoginScreen](https://github.com/GorkemKocc/coachingApp-Frontend/assets/118227992/f7d0b219-ad9b-4e85-9959-5e2de1d0dafc)
 
-##Admin Sceen
+## Admin Sceen
 ![AdminScreen](https://github.com/GorkemKocc/coachingApp-Frontend/assets/118227992/c6b84fc7-ab3b-495d-add6-e1f9b1a7065b)
 
-##Trainer Screen
+## Trainer Screen
 ![TrainerScreen](https://github.com/GorkemKocc/coachingApp-Frontend/assets/118227992/5964a97b-9f55-454d-b24b-b489b695ce1b)
 
-##Client Screen 
+## Client Screen 
 ![ClientScreen](https://github.com/GorkemKocc/coachingApp-Frontend/assets/118227992/28760de9-e861-4331-90f4-f0070432c777)
 
 ## Available Scripts
